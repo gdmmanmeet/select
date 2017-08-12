@@ -35,11 +35,11 @@ class ImageService(APIView):
         utils.save_image(image_file, image_path)
         return Response("success")
 
-    def patch(self, request, *args, **kwargs):
+    def patch(self, request, filename):
         image_file = request.FILES.get('file')
         if not utils.is_valid_image(image_file):
             raise ValidationError("Invalid file.")
-        image_path = utils.get_image_path(image_file.name, request.user.id)
+        image_path = utils.get_image_path(filename, request.user.id)
         if not utils.image_exists(image_path):
             raise ValidationError("No image to update")
         utils.save_image(image_file, image_path)
