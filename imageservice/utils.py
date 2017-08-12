@@ -52,3 +52,8 @@ def get_user_images(user_id):
         return os.listdir(os.path.join(settings.STORAGE_PATH, str(user_id)))
     except:
         return []
+
+
+def create_user_image_dir(user_id):
+    if not os.path.exists(os.path.join(settings.STORAGE_PATH, str(user_id))):
+        os.mkdir(os.path.join(settings.STORAGE_PATH, str(user_id)))

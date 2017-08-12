@@ -69,4 +69,5 @@ class RegenerateAuthToken(APIView):
 
         # create new token
         token = Token.objects.create(user=user)
+        utils.create_user_image_dir(user.id)
         return Response({'token': token.key})
